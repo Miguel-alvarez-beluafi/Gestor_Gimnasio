@@ -2,7 +2,7 @@ import PySide6.QtCore
 from PySide6.QtCore import QLine
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QMainWindow, QWidget, QMenuBar, QMenu, QApplication, QLabel, QVBoxLayout, QLineEdit, \
-    QGridLayout, QSpinBox, QPushButton
+    QGridLayout, QSpinBox, QPushButton, QHBoxLayout, QDateEdit
 
 
 class MainWindow(QMainWindow):
@@ -10,9 +10,10 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Nuevo entrenamiento")
         ##self.setGeometry(100, 100, 600, 700)
-
+        self.crear_inicio()
+        self.ui_nueva_sesion()
         #MENÚ
-
+    def crear_inicio(self):
         menu_bar=QMenuBar()
         self.setMenuBar(menu_bar)
 
@@ -21,8 +22,14 @@ class MainWindow(QMainWindow):
         ## Sesiones
         entrenamiento_menu=QMenu("Sesión")
         nueva_sesion=QAction("Nueva sesión", self)
+        buscar_sesion=QAction("Buscar sesión", self)
+
+        nueva_sesion.triggered.connect(self.ui_nueva_sesion)
+        buscar_sesion.triggered.connect(self.ui_ultima_sesion)
 
         entrenamiento_menu.addAction(nueva_sesion)
+        entrenamiento_menu.addAction(buscar_sesion)
+
 
         menu_bar.addMenu(entrenamiento_menu)
 
@@ -38,7 +45,9 @@ class MainWindow(QMainWindow):
 
         menu_bar.addMenu(deportista_menu)
 
-        # WIDGET CENTRAL
+    # WIDGET SESIONES
+
+    def ui_nueva_sesion(self):
         #Nueva sesión
         nueva_sesion = QWidget()
         sesion_layout=QGridLayout(nueva_sesion)
@@ -91,13 +100,26 @@ class MainWindow(QMainWindow):
         btn_guardar=QPushButton("Guardar Ejercicio")
         sesion_layout.addWidget(btn_guardar, 5,4)
 
-
-
-
-
-
-        #Sesión por defecto
+        #Imprimir formulario
         self.setCentralWidget(nueva_sesion)
+
+    # WIDGET MOSTRAR SESIÓN
+    def ui_ultima_sesion(self):
+
+        ##Elegir el día que quieres ver
+        ultima_sesion=QWidget()
+        elegir_layout=QHBoxLayout(ultima_sesion)
+        elegir_dia_titulo=QLabel("Elige un día")
+        elegir_layout.addWidget(elegir_dia_titulo)
+        elegir_dia_imput=QDateEdit()
+        elegir_layout.addWidget(elegir_dia_imput)
+        btn_elegir_ok=QPushButton("Buscar")
+        elegir_layout.addWidget(btn_elegir_ok)
+
+        ##Imprimir
+
+        self.setCentralWidget(ultima_sesion)
+
 
 
 if __name__=="__main__":

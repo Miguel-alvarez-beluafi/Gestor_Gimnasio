@@ -11,3 +11,6 @@ Voy a crear las siguientes vistas (según me dé tiempo serán funcionales o no)
 ## Diario de desarrollo
 ### 16/11/2026
 He creado la Barra de Inicio y la primera vista de Nueva sesión.
+### 17/11/26 Mañana
+He metido los vistas en funciones para conectarlas al botón correspondiente del menú.  
+He creado también la base de la vista para buscar entrenamientos. Creo que es más interesante que poder ver simplemente el último entrenamiento porque para qué quieres ver que ejercicios hiciste de pecho ayer si hoy tienes que hacer piernas, por ejemplo.  
