@@ -2,7 +2,7 @@ import PySide6.QtCore
 from PySide6.QtCore import QLine
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QMainWindow, QWidget, QMenuBar, QMenu, QApplication, QLabel, QVBoxLayout, QLineEdit, \
-    QGridLayout, QSpinBox, QPushButton, QHBoxLayout, QDateEdit
+    QGridLayout, QSpinBox, QPushButton, QHBoxLayout, QDateEdit, QDoubleSpinBox, QComboBox, QPlainTextEdit
 
 
 class MainWindow(QMainWindow):
@@ -38,6 +38,8 @@ class MainWindow(QMainWindow):
         mostrar_resultados=QAction("Mostrar ficha", self)
         cambiar_deportista=QAction("Elegir", self)
         nuevo_deportista=QAction("Registrar", self)
+
+        nuevo_deportista.triggered.connect(self.ui_registrar_ususario)
 
         deportista_menu.addAction(mostrar_resultados)
         deportista_menu.addAction(cambiar_deportista)
@@ -119,6 +121,73 @@ class MainWindow(QMainWindow):
         ##Imprimir
 
         self.setCentralWidget(ultima_sesion)
+
+    def ui_registrar_ususario(self):
+        #WIDGET CENTRAL
+        registro=QWidget()
+        registro_layout=QVBoxLayout(registro)
+        titulo=QLabel("REGISTRAR USUARIO")
+        registro_layout.addWidget(titulo)
+
+        ##Grid
+
+        grid_registro=QGridLayout()
+
+        ###Definir tamaño de las columnas
+        grid_registro.setColumnStretch(0, 1)
+        grid_registro.setColumnStretch(1, 1)
+        grid_registro.setColumnStretch(2, 1)
+
+        ###Labels
+        n_nombre_label = QLabel("Nombre")
+        grid_registro.addWidget(n_nombre_label, 0, 0)
+        n_apellidos_label = QLabel("Apellidos")
+        grid_registro.addWidget(n_apellidos_label, 0, 1)
+        n_telefono_label = QLabel("Teléfono")
+        grid_registro.addWidget(n_telefono_label, 2, 0)
+        n_direccion_label = QLabel("Direccion")
+        grid_registro.addWidget(n_direccion_label, 4, 0)
+        n_email_label = QLabel("E-mail")
+        grid_registro.addWidget(n_email_label, 2, 1)
+        n_edad_label = QLabel("Edad")
+        grid_registro.addWidget(n_edad_label, 6, 0)
+        n_alto_label = QLabel("Estatura")
+        grid_registro.addWidget(n_alto_label, 6, 1)
+        n_genero_label = QLabel("Género")
+        grid_registro.addWidget(n_genero_label, 6, 2)
+        n_notas_label = QLabel("Observaciones")
+        grid_registro.addWidget(n_notas_label, 8, 0)
+        ###Inputs
+        ipt_name=QLineEdit()
+        grid_registro.addWidget(ipt_name, 1, 0)
+        ipt_apellido=QLineEdit()
+        grid_registro.addWidget(ipt_apellido, 1, 1,1,2)
+        ipt_tlfn=QLineEdit()
+        ipt_tlfn.setMaxLength(9)
+        grid_registro.addWidget(ipt_tlfn, 3, 0)
+        ipt_direccion=QLineEdit()
+        grid_registro.addWidget(ipt_direccion, 5, 0, 1, 3)
+        ipt_mail=QLineEdit()
+        grid_registro.addWidget(ipt_mail, 3, 1, 1, 2)
+        ipt_edad=QSpinBox()
+        grid_registro.addWidget(ipt_edad, 7, 0)
+        ipt_alto = QDoubleSpinBox()
+        grid_registro.addWidget(ipt_alto, 7, 1)
+        ipt_alto.setDecimals(2)
+        ipt_genero=QComboBox()
+        ipt_genero.addItems(['Masculino', 'Femenino', 'Otros'])
+        grid_registro.addWidget(ipt_genero, 7, 2)
+        ipt_notas=QPlainTextEdit()
+        grid_registro.addWidget(ipt_notas, 9, 0, 2, 3)
+
+        registro_layout.addLayout(grid_registro)
+
+        guardar=QPushButton("Guardar")
+
+        registro_layout.addWidget(guardar)
+
+        #Definir widget central
+        self.setCentralWidget(registro)
 
 
 

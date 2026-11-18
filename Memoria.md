@@ -14,3 +14,6 @@ He creado la Barra de Inicio y la primera vista de Nueva sesión.
 ### 17/11/26 Mañana
 He metido los vistas en funciones para conectarlas al botón correspondiente del menú.  
 He creado también la base de la vista para buscar entrenamientos. Creo que es más interesante que poder ver simplemente el último entrenamiento porque para qué quieres ver que ejercicios hiciste de pecho ayer si hoy tienes que hacer piernas, por ejemplo.  
+### 18/11/26
+Tengo muy poco tiempo así que voy a hacer la vista para registrar ususarios.  
+He realizado la vista con ayuda de la IA para crear el input de género, preguntarle por el equivalente a un textarea de HTML y controlar el tamaó de las columnas de un Grid.
